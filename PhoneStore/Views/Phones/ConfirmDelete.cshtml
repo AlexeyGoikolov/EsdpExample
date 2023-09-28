@@ -1,0 +1,14 @@
+﻿@model Phone
+
+@{
+    ViewBag.Title = "Удаление";
+    Layout = "_Layout";
+}
+
+<h2>Подтверждение удаления</h2>
+
+<form method="post" asp-action="Delete" asp-controller="Phones" asp-route-phoneId="@Model.Id">
+    <p>Вы действительно хотите удалить устройство @Model.Title ?</p>
+    <input type="submit" value="Да" class="btn btn-danger">
+    <a asp-action="Index" asp-controller="Phones" class="btn btn-success">Нет</a>
+</form>

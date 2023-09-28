@@ -1,0 +1,16 @@
+﻿@model PhoneStore.ViewModels.UploadFileViewModel
+
+@{
+    ViewBag.Title = "Загрузка файла";
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <form asp-action="UploadFile" asp-controller="Home" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Загрузка файла</label>
+            <input asp-for="File" class="form-control" type="file" id="formFile">
+        </div>
+        <input type="submit" value="Загрузить" class="btn btn-success">
+    </form>
+</div>

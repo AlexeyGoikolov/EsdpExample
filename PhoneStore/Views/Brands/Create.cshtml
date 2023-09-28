@@ -1,0 +1,28 @@
+﻿@using PhoneStore.ViewModels
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model PhoneStore.ViewModels.CreateBrandViewModel
+
+@{
+    ViewBag.Title = "Добавление бренда";
+    Layout = "_Layout";
+}
+
+<form asp-action="Create" asp-controller="Brands" method="post" asp-antiforgery="true">
+    <input asp-for="Name" class="form-control" type="text" placeholder="Название бренда" >
+    <span asp-validation-for="Name"></span>
+    <input asp-for="Phone" class="form-control" type="text" placeholder="Телефон" >
+    <span asp-validation-for="Phone"></span>
+    <input asp-for="Email" class="form-control" type="text" placeholder="Электронный адрес" >
+    <span asp-validation-for="Email"></span>
+    <input asp-for="Address" class="form-control" type="datetime" placeholder="Адрес" >
+    <span asp-validation-for="Address"></span>
+    <input class="form-control" type="submit" value="Добавить">
+</form>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

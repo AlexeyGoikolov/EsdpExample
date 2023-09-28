@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model PhoneStore.ViewModels.EditPhoneViewModel
+
+@{
+    ViewBag.Title = "Редактирование телефона";
+    Layout = "_Layout";
+}
+
+<h2>Редактирование</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <p class="text-danger fs-5">@ViewBag.Error</p>
+        <form asp-action="Edit" asp-controller="Phones" method="post">
+            
+            <div class="form-group mb-3">
+                <select class="form-select" asp-for="Phone.BrandId">
+                    <option selected>Выберите бренд</option>
+                    @foreach (var brand in @Model.Brands)
+                    {
+                        <option value="@brand.Id">@brand.Name</option>
+                    }
+                </select>
+                <span class="text-danger" asp-validation-for="Phone.BrandId"></span>
+            </div>
+
+            <div class="form-group mb-3">
+
+                <label for="title" class="mb-2">Наименование</label>
+
+                <input asp-for="Phone.Title"
+                       type="text"
+                       class="form-control"
+                       id="title"
+                       placeholder="Наименование устройства"
+                       value="@Model.Phone.Title">
+            </div>
+            <span asp-validation-for="Phone.Title"></span>
+
+            <div class="form-group mb-3">
+
+                <label for="price" class="mb-2">Стоимость</label>
+
+                <input
+                    asp-for="Phone.Price"
+                    type="text"
+                    class="form-control"
+                    id="price"
+                    placeholder="Стоимость устройства"
+                    value="@Model.Phone.Price">
+            </div>
+            <span asp-validation-for="Phone.Price"></span>
+            <input type="hidden" asp-for="Phone.Id" value="@Model.Phone.Id">
+            <button class="btn btn-secondary" type="submit">Изменить</button>
+        </form>
+    </div>
+</div>
