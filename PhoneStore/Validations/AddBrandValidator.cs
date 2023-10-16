@@ -7,12 +7,9 @@ namespace PhoneStore.Validations;
 
 public class AddBrandValidator : AbstractValidator<CreateBrandViewModel>
 {
-    private readonly MobileContext _context;
-    private readonly IConfiguration _configuration;
-    public AddBrandValidator(MobileContext context, IConfiguration configuration)
+
+    public AddBrandValidator()
     {
-        _context = context;
-        _configuration = configuration;
         RuleFor(x => x.Name)
             .NotNull().WithMessage("Имя бренда обязательно")
             .MinimumLength(3).WithMessage("Название должно быть не менее 3-х символов");
@@ -21,9 +18,4 @@ public class AddBrandValidator : AbstractValidator<CreateBrandViewModel>
         RuleFor(x => x.Email).NotNull().WithName("Электронный адрес")
             .EmailAddress().WithMessage("{PropertyName} не соответсвует формату");
     }
-
-    // protected bool CheckBrandinDatabase(string brand)
-    // {
-    //     return !_context.Brands.Any(x => x.Name.ToUpper() == brand.ToUpper());
-    // }
 }

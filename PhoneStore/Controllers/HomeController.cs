@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PhoneStore.Models;
 using PhoneStore.Services;
@@ -6,6 +7,7 @@ using PhoneStore.ViewModels;
 
 namespace PhoneStore.Controllers;
 
+[Authorize]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -19,6 +21,7 @@ public class HomeController : Controller
         _fileUploadService = fileUploadService;
     }
 
+    [AllowAnonymous]
     public IActionResult Index()
     {
         return View();

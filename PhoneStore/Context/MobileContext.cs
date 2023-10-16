@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PhoneStore.Models;
 
 namespace PhoneStore.Context;
 
-public class MobileContext : DbContext
+public class MobileContext : IdentityDbContext<User>
 {
     public DbSet<Phone> Phones { get; set; }
     public DbSet<Brand> Brands { get; set; }

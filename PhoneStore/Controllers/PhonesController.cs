@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PhoneStore.Context;
@@ -13,7 +14,7 @@ using QuestPDF.Previewer;
 
 namespace PhoneStore.Controllers;
 
-
+[Authorize]
 public class PhonesController : Controller
 {
     private readonly MobileContext _db;
@@ -36,14 +37,6 @@ public class PhonesController : Controller
             .ThenBy(p => p.Price)
             .ToList();
         
-        var averagePrice = phones.Average(p => p.Price);
-        var phone2 = phones.Where(p => p.Brand.Name == "Samsung").MaxBy(p => p.Price);
-    
-        
-        var phones2 = await (from phone in _db.Phones.Include(p => p.Brand) 
-            where phone.BrandId == 1
-                select phone).ToListAsync();
-        var intersected = phones.Intersect(phones2);
         if (model.Name != null || model.Brand != null)
         {
             if (!string.IsNullOrEmpty(model.Name))
@@ -59,6 +52,7 @@ public class PhonesController : Controller
         return View(phones);
     }
     
+    [Authorize(Roles = "admin")]
     [HttpGet]
     public IActionResult Add()
     {
@@ -70,6 +64,7 @@ public class PhonesController : Controller
         return View(model);
     }
     
+    [Authorize(Roles = "admin")]
     [HttpPost]
     public IActionResult Add(CreatePhoneViewModel model)
     {
@@ -86,6 +81,7 @@ public class PhonesController : Controller
         return View(model);
     }
 
+    [Authorize(Roles = "admin")]
     [HttpGet]
     public IActionResult Edit(int? phoneId)
     {
@@ -103,6 +99,7 @@ public class PhonesController : Controller
         return View(model);
     }
 
+    [Authorize(Roles = "admin")]
     [HttpPost]
     public IActionResult Edit(EditPhoneViewModel model)
     {
@@ -117,6 +114,7 @@ public class PhonesController : Controller
         return RedirectToAction("Index");
     }
 
+    [Authorize(Roles = "admin")]
     [HttpGet]
     public IActionResult ConfirmDelete(int? phoneId)
     {
@@ -129,6 +127,7 @@ public class PhonesController : Controller
         return View(phone);
     }
 
+    [Authorize(Roles = "admin")]
     [HttpPost]
     [ActionName("Delete")]
     public async Task<IActionResult> Delete(int? phoneId)
