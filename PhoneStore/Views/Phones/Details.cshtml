@@ -1,0 +1,24 @@
+﻿@model Phone
+
+@{
+    ViewBag.Title = "Подробная страница";
+    Layout = "_Layout";
+}
+
+<h2>Детальная страница о @Model.Title</h2>
+
+<table class="table">
+    <tr>
+        <th>Бренд:</th>
+        <td>@Model.Brand.Name</td>
+    </tr>
+    <tr>
+        <th>Модель:</th>
+        <td>@Model.Title</td>
+    </tr>
+    <tr>
+        <th>Цена:</th>
+        <td>@Model.Price</td>
+    </tr>
+</table>
+}

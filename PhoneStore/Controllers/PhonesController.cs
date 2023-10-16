@@ -114,6 +114,16 @@ public class PhonesController : Controller
         return RedirectToAction("Index");
     }
 
+    [Authorize]
+    [HttpGet]
+    public IActionResult Details(int id)
+    {
+        var phone = _db.Phones
+            .Include(p => p.Brand)
+            .FirstOrDefault(p => p.Id == id);
+        return View(phone);
+    }
+
     [Authorize(Roles = "admin")]
     [HttpGet]
     public IActionResult ConfirmDelete(int? phoneId)
