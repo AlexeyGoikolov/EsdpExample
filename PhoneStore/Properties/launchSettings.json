@@ -23,6 +23,14 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "Jenkins": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "applicationUrl": "https://139.59.154.54:5001;http://139.59.154.54:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }
