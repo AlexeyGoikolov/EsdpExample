@@ -19,12 +19,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="wwwroot\Files\book.pdf" />
+      <None Include="wwwroot/Files/book.pdf" />
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="Views\Users\Index.cshtml" />
-      <_ContentIncludedByDefault Remove="Views\Users\Paging.cshtml" />
+      <_ContentIncludedByDefault Remove="Views/Users/Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views/Users/Paging.cshtml" />
     </ItemGroup>
 
 </Project>
